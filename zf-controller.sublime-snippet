@@ -1,0 +1,39 @@
+<snippet>
+	<content><![CDATA[<?php
+/**
+ * Created By: Claudio  Campos
+ * E-Mail: callcocam@gmail.com
+ */
+
+namespace ${1:Module}\Controller;
+
+
+use ${1}\Api\Model\\${2:Class};
+use ${1}\Form\\${2}Form;
+use ${1}\Model\\${2}Model;
+use ${1}\Table\\${2}Table;
+use Core\Controller\AbstractController;
+use Interop\Container\ContainerInterface;
+
+class ${2}Controller extends AbstractController
+{
+
+	public function __construct(ContainerInterface \$container)
+	{
+		\$this->container = \$container;
+		\$this->table = ${2}Table::class;
+		\$this->model = ${2}Model::class;
+		\$this->apiModel = ${2}::class;
+		\$this->form = ${2}Form::class;
+		\$this->route = "${3:admin}";
+		\$this->controller = "${4:controller}";
+		\$this->templateEdit = "${3}/${4}/%s/editar-form";
+		\$this->getHelper();
+	}
+
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-controller</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

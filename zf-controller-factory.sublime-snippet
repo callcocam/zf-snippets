@@ -1,0 +1,35 @@
+<snippet>
+	<content><![CDATA[<?php
+/**
+ * Created By: Claudio  Campos
+ * E-Mail: callcocam@gmail.com
+ */
+
+namespace \${1:Admin}\Controller\Factory;
+
+
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
+
+class ControllerFactory implements FactoryInterface
+{
+
+	/**
+	 * Create an object
+	 *
+	 * @param  ContainerInterface \$container
+	 * @param  string             \$requestedName
+	 * @param  null|array         \$options
+	 *
+	 * @return object
+	 */
+	public function __invoke(ContainerInterface \$container, \$requestedName, array \$options = null)
+	{
+		return (new \ReflectionClass(sprintf("%sController", \$requestedName)))->newInstance(\$container);
+	}
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-controller-factory</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

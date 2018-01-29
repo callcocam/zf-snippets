@@ -1,0 +1,95 @@
+<snippet>
+	<content><![CDATA[<?php
+/**
+ * Created By: Claudio  Campos
+ * E-Mail: callcocam@gmail.com
+ */
+
+namespace ${1:Module}\Api\Model;
+
+
+use Core\AbstractTable;
+use Zend\Db\Sql\Select;
+
+class ${2:Class} extends AbstractTable
+{
+	protected \$config = [
+		'name' => '${3:Titulo Da Tabela}',
+		'showPagination' => ${4:true},
+		'showQuickSearch' => ${5:true},
+		'showItemPerPage' => ${6:true},
+		'itemCountPerPage' => ${7:12},
+		'showColumnFilters' => ${8:true},
+		'showExportToCSV' => ${9:true},
+		'valuesOfItemPerPage' => [6, ${7}, 24, 48 , 96 , 192],
+		'showButtonsActions' => ${10:true},
+		'valueButtonsActions' => ['add'=>"Adicionar",'active'=>'Ativar','inactive'=>"Desabilitar","trash"=>"Enviar p/ Lixeira",'trashall'=>'Esvaziar Lixeira','csv'=>'Exportar'],
+		'Module' => '${1}',
+		'numberColls' => ${13:3},
+		'rowAction' => ''
+	];
+
+	/**
+	 * @var array Definition of headers
+	 */
+	protected \$headers = [
+		'id' => ['title' => 'check-all', 'width' => '50'],
+		'${15:name}' => ['title' => '${16:Nome\Descrição}'],
+		'status' => ['title' => 'Active' , 'width' => 100],
+	];
+
+	public function init()
+	{
+		//zf-init-cover
+		
+		\$this->getHeader('${15}')->getCell()->addDecorator('link', [
+			'url' =>  \$this->getUrl(sprintf('%s/default', \$this->Route), [
+				'controller'=>\$this->Controller,
+				'action'=>'editar',
+				'id' => "%s"
+			]),
+			'vars' => ['id'],
+		])->addCondition('equal', ['column' => 'status', 'values' => '1'])
+			->addCondition('acl', [
+				'acl' => \$this->acl->getAcl(),
+				'role' => \$this->user->access,
+				'params' => \$this->getRouteHelper()->getParans(),
+				'action' => 'editar',
+			]);
+
+		\$this->getHeader('status')->getCell()->addDecorator('state', [
+			'value' => [
+				'1' => 'Active',
+				'2' => 'Desactive',
+				'3' => 'Trash',
+			],
+			'class' => [
+				'1' => 'green',
+				'2' => 'yellow',
+				'3' => 'red',
+			],
+		]);
+
+		\$this->getHeader('id')->getCell()->addDecorator('check')
+				->addCondition('acl', [
+						'acl' => \$this->acl->getAcl(),
+						'role' => \$this->user->access,
+						'params' => \$this->getRouteHelper()->getParans(),
+						'action' => 'state',
+					]);
+		\$this->getHeader('id')->addDecorator('check');
+	}
+
+	/**
+	 * @param Select \$query
+	 */
+	protected function initFilters(Select \$query)
+	{
+
+	}
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-api-model</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

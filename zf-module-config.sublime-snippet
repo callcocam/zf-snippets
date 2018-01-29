@@ -1,0 +1,61 @@
+<snippet>
+	<content><![CDATA[<?php
+/**
+ * Created By: Claudio  Campos
+ * E-Mail: callcocam@gmail.com
+ */
+
+namespace ${1:Modulo};
+
+use ${1}\Controller\Factory\ControllerFactory;
+use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
+
+return [
+    'router' => [
+        'routes' => [
+			"${2:route}" => [
+				"type" => Literal::class,
+				"options" => [
+					"route" => "/admin-${2}",
+					"defaults" => [
+						"__NAMESPACE__" => "${1}\Controller",
+						"controller" => "${3:Controller}",
+						"action" => "index",
+					],
+				],
+				"may_terminate" => true,
+				"child_routes" => [
+					"default" => [
+						"type" => Segment::class,
+						"options" => [
+							"route" => "/[:controller[/:action[/:id]]]",
+							"constraints" => [
+								"controller" => "[a-zA-Z][a-zA-Z0-9_-]*",
+								"action" => "[a-zA-Z][a-zA-Z0-9_-]*",
+							],
+							"defaults" => [
+							],
+						],
+					],
+				],
+			],
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
+			'${1}\Controller\\${3}' => ControllerFactory::class,
+        ],
+    ],
+    'view_manager' => [
+       'template_path_stack' => [
+            __DIR__ . '/../view',
+        ],
+    ],
+];
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-module-config</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

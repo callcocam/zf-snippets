@@ -1,0 +1,57 @@
+<snippet>
+	<content><![CDATA[<?=\$this->partial('partial/form-error',['form'=>\$this->form]);?>
+<?=\$this->form()->openTag(\$this->form->setAttribute('action',\$this->url(sprintf("%s/default", \$this->route), [
+	'controller'=>\$this->controller,
+	'action'=>'editar-form'
+]))->setAttribute('name','AjaxForm')->setAttribute('class',''));?>
+<?php
+\$formLayouty='group';
+//\$formLayouty='inline';
+?>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+		<?=\$this->formHidden(\$this->form->get('id'));?>
+		<?=\$this->formHidden(\$this->form->get('empresa'));?>
+		
+		 <?=\$this->partial(sprintf('partial/%s/form/input-%s', LAYOUT,\$formLayouty),[
+            'field'=>\$this->form->get('status')
+        ]);?> 
+		<?=\$this->partial(sprintf('partial/%s/form/input-%s', LAYOUT,\$formLayouty),[
+			'field'=>\$this->form->get('updated_at')
+		]);?>
+		<?=\$this->partial(sprintf('partial/%s/form/input-%s', LAYOUT,\$formLayouty),[
+			'field'=>\$this->form->get('created_at')
+		]);?>
+    </div>    
+</div>
+<div class="clearfix"></div>
+ <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-3">
+            <?=\$this->formSubmit(\$this->form->get('submit')->setValue('Atualizar\\${1:Dados}'));?>
+        </div>
+        <div class="col-xs-3">
+            <?=\$this->formSubmit(\$this->form->get('save_copy')->setValue('Atualizar\Duplicar'));?>
+        </div>
+        <div class="col-xs-3">
+            <?=\$this->formSubmit(\$this->form->get('save_close')->setValue('Atualizar\Fechar'));?>
+        </div>
+        <div class="col-xs-3">
+           <?=
+        \$this->partial(sprintf('partial/%s/btn-voltar', LAYOUT), [
+            'route' => \$this->route,
+            'controller' => \$this->controller,
+            'title' => 'Voltar Para A Lista',
+        ]);
+        ?>
+        </div>
+        <!-- /.col -->
+    </div>
+<?=\$this->form()->closeTag();?>
+<?=\$this->partial('partial/messages');?>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-phtml-editar-form</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

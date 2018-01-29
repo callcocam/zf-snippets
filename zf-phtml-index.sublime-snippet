@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[<?= \$this->partial(sprintf("partial/%s/top-navigation", LAYOUT),[
+	'a'=>"${1:Admin}",'b'=>\$this->route,'c'=>\$this->controller,'d'=>"Listar", "e"=>'${2:Arquivo}']); ?>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<?=\$this->ZfTable()->listar();?>
+		</div>
+	</div>
+</section>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-phtml-index</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[\$this->getHeader('cover')->getCell()->addDecorator('img', [
+			'base' => \$this->getUrl('${1:admin}/default', [
+				'controller'=>'${2:controller}',
+				'action'=>'file'
+			]),
+			'vars' => ['cover'],
+			//'attrs' => ['class'=>'img-circle','style'=>'width: 100%; display: block;']
+			'attrs' => ['class'=>'img-circle'],
+			'thumbnail'=>true
+		]);]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-init-cover</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[\$this->getHeader('${1:coluna}')->getCell()->addDecorator('callable', [
+			'callable' => function(\$context, \$record){
+				if(\$context):
+				\$${2:Class} = \$this->container->get(\\${3:Admin}\Table\\${2}Table::class);
+				\$Result = \$${2}->find(\$context);
+			    return \$Result['${4:name}'];
+			    endif;
+			    return \$context;
+			}
+		]);]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-init-callable-db</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[\$Select = \$this->dbValueOptions(\\${1:Module}\Table\\${2:Class}Table::class, ['status'=>1]);
+		//\$Select->where(new \Zend\Db\Sql\Predicate\IsNull('${3}'));
+		################# ${3:name} #################
+		\$this->add([
+			'type'=> \Zend\Form\Element\Select::class,
+			'name'=>'${3}',
+			'options'=>[
+				'disable_inarray_validator'=>true,
+				'label'=>'${4:Label}',
+				'empty_option'=>'--Selecione--',
+				'value_options'=>\$this->getValueDb(\$Select)
+			],
+			'attributes'=>[
+				'id'=>'${3}',
+				'class'=>'form-control'
+			]
+		]);]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-input-select-db</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
