@@ -23,7 +23,78 @@ class ${2:Class} extends AbstractTable
 		'showExportToCSV' => ${9:true},
 		'valuesOfItemPerPage' => [6, ${7}, 24, 48 , 96 , 192],
 		'showButtonsActions' => ${10:true},
-		'valueButtonsActions' => ['add'=>"Adicionar",'active'=>'Ativar','inactive'=>"Desabilitar","trash"=>"Enviar p/ Lixeira",'trashall'=>'Esvaziar Lixeira','csv'=>'Exportar'],
+		//'valueButtonsActions' => ['add' => "Adicionar", 'active' => 'Ativar', 'inactive' => "Desabilitar", "trash" => "Enviar p/ Lixeira", 'trashall' => 'Esvaziar Lixeira', 'csv' => 'Exportar'],
+        'valueButtonsActions' => [
+            'add' => [
+                "label" => "Adicionar",
+                "class"=> "actions btn btn-success btn-sm btn-flat %s",
+                "action" =>"create",
+                "id" =>"",
+                //"disabled" =>"disabled",
+                "type" =>"form",
+                "ico" =>"fa fa-plus-circle",
+                "state"=>[]
+            ],
+            'active' => [
+                "label" => "Ativar",
+                "class"=> "actions btn btn-warning btn-sm btn-flat %s",
+                "action" =>"state",
+                "type" =>"btn",
+                "ico" =>"fa fa-check",
+                "id" =>"1",
+                //"disabled" =>"disabled",
+                "state"=>[null,2,3]
+            ],
+            'inactive' => [
+                "label" => "Desabilitar",
+                "class"=> "actions btn bg-gray  btn-sm btn-flat %s",
+                "action" =>"state",
+                "type" =>"btn",
+                "ico" =>"fa fa-close",
+                "id" =>"2",
+                //"disabled" =>"disabled",
+                "state"=>[null,1,3]
+            ],
+            "trash" =>[
+                "label" => "Enviar p/ Lixeira",
+                "class"=> "actions btn bg-blue btn-sm btn-flat %s",
+                "action" =>"state",
+                "type" =>"btn",
+                "ico" =>"fa fa-trash",
+                "id" =>"3",
+                //"disabled" =>"disabled",
+                "state"=>[null,1,2]
+            ] ,
+            'trashall' => [
+                "label" => "Esvaziar Lixeira",
+                "class"=> "actions btn btn-danger btn-sm btn-flat %s",
+                "action" =>"delete",
+                "type" =>"btn",
+                "ico" =>"fa fa-eraser",
+                "id" =>"4",
+                //"disabled" =>"disabled",
+                "state"=>[null,3]
+            ],
+            'csv' => [
+                "label" => "Exportar",
+                "class"=> "export-csv btn bg-aqua btn-sm btn-flat %s",
+                "action" =>"create",
+                "type" =>"btn",
+                //"disabled" =>"disabled",
+                "ico" =>"fa fa-plus-circle",
+                "state"=>[null,1,2,3]
+            ],
+            'ajuda' => [
+                "label" => "Ajuda",
+                "class"=> "ajuda btn bg-purple btn-sm btn-flat %s",
+                "action" =>"ajuda",
+                "type" =>"btn",
+                "id" =>"6",
+                //"disabled" =>"disabled",
+                "ico" =>"fa fa-question-circle",
+                "state"=>[null,1,2,3]
+            ]
+        ],
 		'Module' => '${1}',
 		'numberColls' => ${13:3},
 		'rowAction' => ''
@@ -40,8 +111,7 @@ class ${2:Class} extends AbstractTable
 
 	public function init()
 	{
-		//zf-init-cover
-		
+		//zf-init-cover		
 		\$this->getHeader('${15}')->getCell()->addDecorator('link', [
 			'url' =>  \$this->getUrl(sprintf('%s/default', \$this->Route), [
 				'controller'=>\$this->Controller,
@@ -56,20 +126,9 @@ class ${2:Class} extends AbstractTable
 				'params' => \$this->getRouteHelper()->getParans(),
 				'action' => 'editar',
 			]);
-
-		\$this->getHeader('status')->getCell()->addDecorator('state', [
-			'value' => [
-				'1' => 'Active',
-				'2' => 'Desactive',
-				'3' => 'Trash',
-			],
-			'class' => [
-				'1' => 'green',
-				'2' => 'yellow',
-				'3' => 'red',
-			],
-		]);
-
+         //zf-decoretor-btn
+        //ou
+        //zf-decoretor-status
 		\$this->getHeader('id')->getCell()->addDecorator('check')
 				->addCondition('acl', [
 						'acl' => \$this->acl->getAcl(),

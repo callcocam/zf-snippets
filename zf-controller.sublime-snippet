@@ -25,9 +25,10 @@ class ${2}Controller extends AbstractController
 		\$this->model = ${2}Model::class;
 		\$this->apiModel = ${2}::class;
 		\$this->form = ${2}Form::class;
-		\$this->route = "${3:admin}";
+		\$this->route = "adm-${3:admin}";
 		\$this->controller = "${4:controller}";
 		\$this->templateEdit = "${3}/${4}/%s/editar-form";
+		//\$this->templateAdd = "${3}/${4}/%s/add-form";
 		\$this->getHelper();
 	}
 

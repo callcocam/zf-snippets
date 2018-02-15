@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[\$this->getHeader('status')->getCell()->addDecorator('state', [
+			'value' => [
+				'1' => 'Active',
+				'2' => 'Desactive',
+				'3' => 'Trash',
+			],
+			'class' => [
+				'1' => 'green',
+				'2' => 'yellow',
+				'3' => 'red',
+			],
+		]);]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-decoretor-status</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

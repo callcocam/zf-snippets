@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[<?=\$this->partial('partial/form-error',['form'=>\$this->form]);?>
-<?=\$this->form()->openTag(\$this->form->setAttribute('action',\$this->url(\$this->route, [
+<?=\$this->form()->openTag(\$this->form->setAttribute('action',\$this->url(sprintf("%s/default", \$this->route), [
     'controller'=>\$this->controller,
     'action'=>'editar-form'
 ]))->setAttribute('name','AjaxForm')->setAttribute('class',''));?>

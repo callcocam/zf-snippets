@@ -1,0 +1,62 @@
+<snippet>
+	<content><![CDATA[\$this->getHeader('${1:status}')->getCell()->addDecorator('btn', [
+            'params' => \$this->getRouteHelper()->getParans(),
+            'url'=>[
+                'ver' => [
+                     'atrrs'=>[
+                        'class'=>'btn btn-danger btn-xs btn-flat'
+                    ],
+                    'ico'=>'fa fa-eye',
+                    'vars' => ['id'],
+                    'href'=>\$this->getUrl(sprintf('%s/default', \$this->Route), [
+                        'controller' => \$this->Controller,
+                        'action' => 'ver',
+                        'id' => "%s"
+                    ])
+                ],
+                'editar' => [
+                    'atrrs'=>[
+                        'class'=>'btn btn-success btn-xs btn-flat'
+                    ],
+                    'href'=>\$this->getUrl(sprintf('%s/default', \$this->Route), [
+                        'controller' => \$this->Controller,
+                        'action' => 'editar',
+                        'id' => "%s"
+                    ]),
+                    'status'=>[1],
+                    'vars' => ['id'],
+                    'ico'=>'fa fa-pencil'
+                ],
+                //'print' => [
+                //    'atrrs'=>[
+                //        'class'=>'btn btn-primary btn-xs btn-flat'
+                //    ],
+                //    'ico'=>'fa fa-print',
+                //    'href'=>\$this->getUrl(sprintf('%s/default', \$this->Route), [
+                //        'controller' => \$this->Controller,
+                //        'action' => 'print',
+                //        'id' => "%s"
+                //    ]),
+                //    'vars' => ['id'],
+                //],
+                'state' => [
+                    'atrrs'=>[
+                        'class'=>'btn btn-danger btn-xs btn-flat j_confirm_delete',
+                        'data-state'=>'%s'
+                    ],
+                    'status'=>[1,2],
+                    'ico'=>'fa fa-trash',
+                    'href'=>\$this->getUrl(sprintf('%s/default', \$this->Route), [
+                        'controller' => \$this->Controller,
+                        'action' => 'action',
+                        'id' => "id"
+                    ]),
+                    'vars' => ['id'],
+                ],
+            ], 
+        ]);]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-decoretor-btn</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
