@@ -1,0 +1,49 @@
+<snippet>
+	<content><![CDATA[<?= \$this->partial('partial/form-error', ['form' => \$this->form]); ?>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><?= \$this->title ?></h4>
+        </div>
+        <div class="modal-body"><?php  \$formLayouty='group'; ?>
+            <?=\$this->formHidden(\$this->form->get('id'));?>
+            <?=\$this->formHidden(\$this->form->get('empresa')->setValue(\$this->identity()->empresa));?>
+            <div class="row">
+                <div class="col-md-4">
+                    <?=\$this->partial(sprintf('partial/%s/form/input-%s', LAYOUT,\$formLayouty),[
+                        'field'=>\$this->form->get('created_at')
+                    ]);?>
+                </div>
+                <div class="col-md-4">
+                    <?=\$this->partial(sprintf('partial/%s/form/input-%s', LAYOUT,\$formLayouty),[
+                        'field'=>\$this->form->get('update_at')
+                    ]);?>
+                </div>
+                <div class="col-md-4">
+                    <?=\$this->partial(sprintf('partial/%s/form/input-%s', LAYOUT,\$formLayouty),[
+                        'field'=>\$this->form->get('status')
+                    ]);?>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><?= \$this->translate('Fechar') ?></button>
+            <?php \$this->form->get('submit')->setAttribute('class','btn  btn-success btn-flat');?>
+            <?php \$this->form->statusBtnData('submit','created_at')->get('submit')->setValue('Cadastrar Estoque'); ?>
+            <?=\$this->formButton()->openTag(\$this->form->get('submit'));?>
+            <span class="fa fa-refresh"></span>
+            <?=\$this->translate(\$this->form->get('submit')->getValue());?>
+            <?=\$this->formButton()->closeTag();?>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<?= \$this->partial('partial/messages'); ?>]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>zf-phtml-add-form</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

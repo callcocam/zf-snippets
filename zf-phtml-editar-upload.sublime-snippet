@@ -36,24 +36,38 @@
 </div>
 <div class="clearfix"></div>
 <div class="row">
-        <!-- /.col -->
-        <div class="col-xs-3">
-            <?=\$this->formSubmit(\$this->form->get('submit')->setValue('Atualizar\\${1:Dados}'));?>
+        <div class="col-md-3 col-xs-12">
+            <?=\$this->partial(sprintf('partial/%s/submit', LAYOUT), [
+                'element' =>  \$this->form->get('submit')->setValue('Atualizar\Dados'),
+                'ico' => 'fa fa-refresh',
+                'title' => 'Atualizar O Dados',
+            ]);
+            ?>
         </div>
-        <div class="col-xs-3">
-            <?=\$this->formSubmit(\$this->form->get('save_copy')->setValue('Atualizar\Duplicar'));?>
+        <div class="col-md-3 col-xs-12">
+            <?=\$this->partial(sprintf('partial/%s/submit', LAYOUT), [
+                'element' =>  \$this->form->get('save_copy')->setValue('Atualizar\Duplicar'),
+                'ico' => 'fa fa-clone',
+                'title' => 'Atualizar E Duplicar',
+            ]);
+            ?>
         </div>
-        <div class="col-xs-3">
-            <?=\$this->formSubmit(\$this->form->get('save_close')->setValue('Atualizar\Fechar'));?>
+        <div class="col-md-3 col-xs-12">
+            <?=\$this->partial(sprintf('partial/%s/submit', LAYOUT), [
+                'element' =>  \$this->form->get('save_close')->setValue('Atualizar\Fechar'),
+                'ico' => 'fa fa-close',
+                'title' => 'Atualizar E Fechar',
+            ]);
+            ?>
         </div>
-        <div class="col-xs-3">
-           <?=
-        \$this->partial(sprintf('partial/%s/btn-voltar', LAYOUT), [
-            'route' => \$this->route,
-            'controller' => \$this->controller,
-            'title' => 'Voltar Para A Lista',
-        ]);
-        ?>
+        <div class="col-md-3 col-xs-12">
+            <?=
+            \$this->partial(sprintf('partial/%s/btn-voltar', LAYOUT), [
+                'route' =>  \$this->route,
+                'controller' => \$this->controller,
+                'title' => 'Voltar Para A Lista',
+            ]);
+            ?>
         </div>
         <!-- /.col -->
     </div>
